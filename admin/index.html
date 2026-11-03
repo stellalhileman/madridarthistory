@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administration — Madrid Art History</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="admin-page">
+<header class="site-header admin-site-header">
+  <a class="brand" href="../public/index.html"><span class="brand-title">Madrid Art History</span><span class="brand-subtitle">Administration</span></a>
+  <button id="logout-button" class="button admin-secondary admin-logout" hidden>Log out</button>
+</header>
+
+<main class="admin-shell">
+  <section id="login-panel" class="admin-panel narrow-panel">
+    <p class="eyebrow">Administration</p>
+    <h1>Sign in</h1>
+    <p>Sign in with your Madrid Art History editor account.</p>
+    <form id="login-form" class="admin-form">
+      <label>Email<input id="login-email" type="email" required autocomplete="email"></label>
+      <label>Password<input id="login-password" type="password" required autocomplete="current-password"></label>
+      <button class="button admin-primary" type="submit">Sign in</button>
+      <p id="login-message" class="form-message" role="status"></p>
+    </form>
+  </section>
+
+  <section id="dashboard" hidden>
+    <div class="admin-layout">
+      <aside class="admin-sidebar" aria-label="Content navigation">
+        <p class="eyebrow">Content</p>
+        <nav id="admin-nav" class="admin-nav">
+          <button data-section="exhibitions" class="active">Exhibitions</button>
+          <button data-section="conferences">Conferences</button>
+          <button data-section="activities">Activities at SLU</button>
+          <button data-section="news">Community</button>
+          <button data-section="courses">Courses</button>
+          <button data-section="faculty">Faculty</button>
+          <button data-section="homepage">Homepage images</button>
+        </nav>
+      </aside>
+
+      <div class="admin-content">
+        <div id="section-view"></div>
+        <section id="editor-panel" class="admin-panel" hidden></section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img class="footer-logo" src="../assets/slu-symbol-white.png" alt="Saint Louis University symbol">
+    <div class="footer-brand-text"><strong>Art History</strong><span>Saint Louis University Madrid</span></div>
+  </div>
+  <nav aria-label="Footer navigation">
+    <a href="../public/exhibitions.html">Exhibitions</a><a href="../public/conferences.html">Conferences</a><a href="../public/activities.html">Activities at SLU</a><a href="../public/news.html">Community</a><a href="../public/courses.html">Courses</a><a href="../public/faculty.html">Faculty</a><a href="../public/contact.html">Contact</a>
+  </nav>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

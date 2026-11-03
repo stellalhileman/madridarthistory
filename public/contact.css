@@ -1,0 +1,25 @@
+/* Contact page styles — separate file to preserve existing site CSS */
+.contact-page { background: #faf9f6; }
+.contact-hero { padding: clamp(3rem, 8vw, 7rem) max(6vw, calc((100vw - 1200px) / 2)); background: #f2f0e9; }
+.contact-hero .eyebrow, .contact-intro .eyebrow { text-transform: uppercase; letter-spacing: .14em; }
+.contact-hero h1 { max-width: 850px; margin: .3rem 0 1rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3rem, 7vw, 5.7rem); font-weight: 500; line-height: 1.04; color: #1c4038; }
+.contact-hero > p:last-child { max-width: 680px; font-size: 1.12rem; line-height: 1.75; }
+.contact-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(320px, 1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(3rem, 7vw, 6rem); }
+.contact-intro h2, .contact-form h2 { margin-top: .4rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; color: #1c4038; }
+.contact-intro > p { line-height: 1.8; }
+.contact-intro a { color: #1c5b4e; text-underline-offset: 3px; }
+.contact-email-card { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; padding: 1.25rem; border: 1px solid #e0ded6; background: #fff; }
+.contact-icon { font-size: 1.6rem; color: #1c5b4e; }
+.contact-email-card strong, .contact-email-card a { display: block; }
+.contact-email-card a { margin-top: .35rem; overflow-wrap: anywhere; }
+.contact-form { display: flex; flex-direction: column; gap: .65rem; padding: clamp(1.25rem, 3vw, 2.25rem); border: 1px solid #e4e1d8; background: #fff; box-shadow: 0 12px 36px rgba(25, 43, 36, .05); }
+.contact-form h2 { margin: 0; }
+.contact-form-note, .contact-privacy { color: #666960; font-size: .88rem; line-height: 1.6; }
+.contact-form label { margin-top: .6rem; font-weight: 600; font-size: .93rem; }
+.contact-form input, .contact-form select, .contact-form textarea { box-sizing: border-box; width: 100%; padding: .85rem .9rem; border: 1px solid #d7d6cf; border-radius: 2px; background: #fff; color: #202720; font: inherit; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: 2px solid #668b7e; outline-offset: 2px; }
+.contact-form textarea { resize: vertical; min-height: 140px; }
+.contact-submit { align-self: flex-start; margin-top: .8rem; cursor: pointer; }
+.contact-privacy { margin-bottom: 0; }
+.contact-honeypot { position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden; }
+@media (max-width: 760px) { .contact-layout { grid-template-columns: 1fr; } .contact-hero { padding-left: 1.25rem; padding-right: 1.25rem; } }
