@@ -1,0 +1,222 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet the Art History faculty at Saint Louis University Madrid.">
+  <title>Faculty — Art History | Saint Louis Madrid</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    .faculty-intro {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .faculty-lead {
+      max-width: 680px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .faculty-directory {
+      padding-top: 1rem;
+      padding-bottom: 5rem;
+    }
+
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .faculty-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .faculty-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .faculty-photo {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: #f0f3f6;
+    }
+
+    .faculty-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .faculty-photo-placeholder {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      color: #003b5c;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .faculty-card-body {
+      padding: 1.5rem;
+    }
+
+    .faculty-card-body h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+
+    .faculty-position {
+      margin: 0 0 1rem;
+      color: #003da5;
+      font-weight: 600;
+    }
+
+    .faculty-description {
+      line-height: 1.7;
+      color: #41464b;
+    }
+
+    .faculty-profile-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: #003da5;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .faculty-profile-link:hover {
+      color: #003b5c;
+    }
+
+    .faculty-status {
+      padding: 1.5rem;
+      border-radius: 8px;
+      background: #f3f6f8;
+      line-height: 1.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .faculty-card {
+        transition: none;
+      }
+
+      .faculty-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-title">Art History</span>
+      <span class="brand-subtitle">Saint Louis University - Madrid</span>
+    </a>
+  <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-navigation">
+    <span></span><span></span><span></span>
+  </button>
+  
+
+    <nav id="main-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <details>
+        <summary>Events</summary>
+        <div class="dropdown">
+          <a href="exhibitions.html">Exhibitions</a>
+          <a href="conferences.html">Conferences</a>
+          <a href="activities.html">Activities at SLU</a>
+        </div>
+      </details>
+      <a href="news.html">Community</a>
+      <a href="courses.html">Courses</a>
+      <a href="faculty.html" aria-current="page">Faculty</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section faculty-intro">
+      <p class="eyebrow">Art History · Saint Louis Madrid</p>
+      <h1>Faculty</h1>
+      <p class="faculty-lead">
+        Meet the faculty who bring the history, interpretation, and study of art
+        to life at Saint Louis University Madrid.
+      </p>
+    </section>
+
+    <section class="section faculty-directory" aria-label="Faculty directory">
+      <div id="faculty-grid" class="faculty-grid" aria-live="polite" aria-busy="true">
+        <p class="faculty-status">Loading faculty profiles…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img class="footer-logo" src="../assets/slu-symbol-white.png"
+           alt="Saint Louis University symbol">
+      <div class="footer-brand-text">
+        <strong>Art History</strong>
+        <span>Saint Louis University - Madrid</span>
+      </div>
+    </div>
+
+    <nav aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <details>
+        <summary>Events</summary>
+        <div class="dropdown">
+          <a href="exhibitions.html">Exhibitions</a>
+          <a href="conferences.html">Conferences</a>
+          <a href="activities.html">Activities at SLU</a>
+        </div>
+      </details>
+      <a href="news.html">Community</a>
+      <a href="courses.html">Courses</a>
+      <a href="faculty.html" aria-current="page">Faculty</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/public.js"></script>
+
+  <script>
+    // Fallback in case the public script fails before finishing the request.
+    window.setTimeout(() => {
+      const grid = document.querySelector("#faculty-grid");
+
+      if (grid && grid.getAttribute("aria-busy") === "true") {
+        grid.innerHTML = `
+          <div class="faculty-status">
+            <strong>Faculty profiles are taking longer than expected.</strong>
+            <p>Please refresh the page. If the problem continues, check the
+            browser console for an error.</p>
+          </div>`;
+        grid.setAttribute("aria-busy", "false");
+      }
+    }, 12000);
+  </script>
+  <script src="../js/mobile-nav.js"></script>
+</body>
+</html>
+```

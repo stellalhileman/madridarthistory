@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Activity — Art History | Saint Louis Madrid</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-title">Art History</span><span class="brand-subtitle">Saint Louis University - Madrid</span></a>
+  <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="main-navigation" aria-label="Main navigation"><a href="index.html">Home</a><details><summary>Events</summary><div class="dropdown"><a href="exhibitions.html">Exhibitions</a><a href="conferences.html">Conferences</a><a href="activities.html">Activities at SLU</a></div></details><a href="news.html">Community</a><a href="courses.html">Courses</a><a href="faculty.html">Faculty</a><a href="contact.html">Contact</a></nav></header>
+<main><section class="section activity-detail-page"><a class="text-link" href="activities.html">← Back to Activities at SLU</a><div id="activity-content"><p class="data-message">Loading activity…</p></div></section></main>
+<footer class="site-footer"><div class="footer-brand"><img class="footer-logo" src="../assets/slu-symbol-white.png" alt="Saint Louis University symbol"><div class="footer-brand-text"><strong>Art History</strong><span>Saint Louis University - Madrid</span></div></div><nav aria-label="Footer navigation"><a href="index.html">Home</a><details><summary>Events</summary><div class="dropdown"><a href="exhibitions.html">Exhibitions</a><a href="conferences.html">Conferences</a><a href="activities.html">Activities at SLU</a></div></details><a href="news.html">Community</a><a href="courses.html">Courses</a><a href="faculty.html">Faculty</a></nav></footer><a href="contact.html">Contact</a>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/public.js"></script>
+<script>
+(async function () {
+ const target=document.querySelector('#activity-content'); const id=new URLSearchParams(window.location.search).get('id');
+ const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+ if(!id){target.innerHTML='<p class="data-message">No activity was selected.</p>';return;}
+ const {data,error}=await supabaseClient.from('activities').select('*').eq('id',id).eq('published',true).maybeSingle();
+ if(error||!data){console.error('Could not load activity:',error);target.innerHTML='<p class="data-message">We could not load this activity right now.</p>';return;}
+ const date=data.start_date?formatDateRange(data.start_date,data.end_date):'Date to be announced';
+ const time=data.start_time?`<p class="card-meta">Time: ${esc(data.start_time)}${data.end_time?' – '+esc(data.end_time):''}</p>`:(data.end_time?`<p class="card-meta">Ends: ${esc(data.end_time)}</p>`:'');
+ const location=data.location||data.address||''; const description=data.full_description||data.description||data.short_description||''; const image=data.featured_image_url||data.featured_image_url||'';
+ const registration=data.registration_required&&data.registration_link?`<p><a class="text-link" href="${esc(data.registration_link)}" target="_blank" rel="noopener">Register →</a></p>`:'';
+ const additional=data.additional_link?`<p><a class="text-link" href="${esc(data.additional_link)}" target="_blank" rel="noopener">More information →</a></p>`:'';
+ target.innerHTML=`<h1>${esc(data.title||'Activity')}</h1><p class="card-meta">${esc(date)}</p>${time}${location?`<p class="card-meta">${esc(location)}</p>`:''}${data.meeting_point?`<p class="card-meta">Meeting point: ${esc(data.meeting_point)}</p>`:''}${data.language?`<p class="card-meta">Language: ${esc(data.language)}</p>`:''}${image?`<img class="activity-detail-image" src="${esc(image)}" alt="">`:''}<div class="activity-detail-body">${esc(description).replace(/\n/g,'<br>')}</div>${registration}${additional}`;
+})();
+</script>  <script src="../js/mobile-nav.js"></script>
+</body></html>
